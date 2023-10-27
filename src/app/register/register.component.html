@@ -1,0 +1,30 @@
+<form [formGroup]="registro" (ngSubmit)="OnRegister(template)">
+    <label for="">nombres: </label>
+    <input type="text" formControlName="nombres">
+    <label for="">apellidos: </label>
+    <input type="text" formControlName="apellidos">
+    <label for="">Edad:</label>
+    <input type="number" formControlName="edad">
+    <label for="">email: </label>
+    <input type="email" formControlName="email">
+    <label for="">contraseña: </label>
+    <input type="password" formControlName="password">
+    <button type="submit" [disabled]="registro.invalid">Registar</button>
+    <button [routerLink]="'/login'">login</button>
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Registro exitoso</h4>
+        </div>
+        <div class="modal-body">
+            <p>Sus datos son:</p>
+            <p>{{registro.get('nombres')?.value}}</p>
+            <p>{{registro.get('apellidos')?.value}}</p>
+            <p>{{registro.get('edad')?.value}}</p>
+            <p>{{registro.get('email')?.value}}</p>
+            <p>{{registro.get('password')?.value}}</p>
+        </div>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">Aceptar</span>
+        </button>
+    </ng-template>
+</form>
